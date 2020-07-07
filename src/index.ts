@@ -29,8 +29,15 @@ class Runner{
                 nickname: await this.discordTools.getUsername(quote.quoteUser)
             }
 
-            res.writeHead(200, {'Content-Length': JSON.stringify(formattedQuote).length, 'Content-Type': 'application/json'});
-            res.setHeader('Access-Control-Allow-Headers', req.headers.origin);
+            res.writeHead(200, {
+                'Content-Length': JSON.stringify(formattedQuote).length,
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Request-Method': '*',
+                'Access-Control-Allow-Methods': 'GET',
+                'Access-Control-Allow-Headers': '*'
+            });
+
             res.end(JSON.stringify(formattedQuote));
         });
 
