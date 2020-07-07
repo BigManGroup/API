@@ -18,7 +18,8 @@ export default class DatabaseWrapper{
     async initPool(){
         this.clientPool = new MongoClient(properties.database, {useUnifiedTopology: true, useNewUrlParser: true, poolSize: 15, keepAlive: true});
         await this.clientPool.connect();
-        this.collection = this.clientPool.db().collection("quotes;")
+        console.info("Database Connected");
+        this.collection = this.clientPool.db().collection("quotes");
     }
 
     async getQuotes() : Promise <Quote[]>{
