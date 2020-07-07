@@ -20,7 +20,6 @@ class Runner{
 
     startRestServer(){
         this.server = http.createServer(async (req, res) => {
-            console.log(req.url);
             if(req.url === "/favicon.ico") {
                 res.writeHead(204);
                 res.end();
