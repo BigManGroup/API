@@ -30,6 +30,9 @@ class Runner{
             }
 
             res.writeHead(200, {'Content-Length': JSON.stringify(formattedQuote).length, 'Content-Type': 'application/json'});
+            res.setHeader('Access-Control-Allow-Origin', '*');
+            res.setHeader('Access-Control-Request-Method', '*');
+            res.setHeader('Access-Control-Allow-Methods', 'GET');
             res.end(JSON.stringify(formattedQuote));
         });
 
