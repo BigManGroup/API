@@ -1,6 +1,6 @@
 import {Collection, MongoClient} from "mongodb";
 import * as properties from '../../resources/config.json'
-import DatabaseCache from "../caching/DatabaseCache";
+import DatabaseCache from "../cache/DatabaseCache";
 import Quote from "./Quote";
 
 export default class DatabaseWrapper{
