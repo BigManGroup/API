@@ -20,11 +20,13 @@ class Runner{
 
     startRestServer(){
         this.server = http.createServer(async (req, res) => {
+            console.log(req.url);
             if(req.url === "/favicon.ico") {
                 res.writeHead(204);
                 res.end();
                 return;
             }
+
 
             let quotes = await this.databaseWrapper.getQuotes();
             let quote = quotes[getRandomNumber(0, quotes.length-1)]
