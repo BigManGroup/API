@@ -22,7 +22,7 @@ export default class DatabaseWrapper{
     }
 
     async getQuotes() : Promise <Quote[]>{
-        let size = (await this.collection.stats()).size;
+        let size = (await this.collection.stats()).count;
         if(this.databaseCache.lastSize !== size) await this.buildQuoteCache();
 
         return Array.from(this.databaseCache.quote.values());
