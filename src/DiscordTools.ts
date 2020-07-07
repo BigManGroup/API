@@ -15,12 +15,15 @@ export default class DiscordTools{
 
     async getUsername(userId : string) : Promise <string> {
         if(!this.usernameCache.isCacheExpired(userId)) return this.usernameCache.userCache.get(userId);
-
         let guildMember = this.client.guilds.cache.get(this.guildId).members.cache.get(userId);
         if (guildMember.partial) await guildMember.fetch();
-        this.usernameCache.updateCache(userId, guildMember.nickname);
 
-        return guildMember.nickname;
+        let nickname = guildMember.nickname;
+        if(guildMember.nickname === null || guildMember.nickname === undefined) nickname = guildMember.user.username;
+        else if(guildMember.deleted) nickname = "Deleted User";
+        this.usernameCache.updateCache(userId, nickname);
+
+        return nickname;
     }
 
     loginClient() : Promise <void>{
