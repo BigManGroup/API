@@ -23,9 +23,14 @@ class Runner{
             let quotes = await this.databaseWrapper.getQuotes();
             let quote = quotes[getRandomNumber(0, quotes.length-1)]
 
-            let formattedQuote = quote.quoteText + " - " + quote.quoteYear + " " + await this.discordTools.getUsername(quote.quoteUser);
-            res.writeHead(200, {'Content-Length': formattedQuote.length, 'Content-Type': 'text/plain'});
-            res.end(formattedQuote);
+            let formattedQuote = {
+                text: quote.quoteText,
+                year: quote.quoteYear,
+                nickname: await this.discordTools.getUsername(quote.quoteUser)
+            }
+
+            res.writeHead(200, {'Content-Length': JSON.stringify(formattedQuote).length, 'Content-Type': 'application/json'});
+            res.end(JSON.stringify(formattedQuote));
         });
 
         this.server.listen(3453);
