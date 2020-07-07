@@ -15,6 +15,7 @@ export default class DiscordTools{
 
     async getUsername(userId : string) : Promise <string> {
         if(!this.usernameCache.isCacheExpired(userId)) return this.usernameCache.userCache.get(userId);
+
         let guildMember = this.client.guilds.cache.get(this.guildId).members.cache.get(userId);
         if (guildMember.partial) await guildMember.fetch();
 
