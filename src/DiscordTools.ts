@@ -23,7 +23,13 @@ export default class DiscordTools{
         return guildMember.nickname;
     }
 
-    loginClient(){
-        this.client.login(properties.token).then(() => console.log("Bot starting up"));
+    loginClient() : Promise <void>{
+        return new Promise<void>(async (resolve) => {
+            await this.client.login(properties.token);
+            this.client.on('ready', () => {
+                console.info("Discord Client Started")
+                resolve();
+            });
+        });
     }
 }
