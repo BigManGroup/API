@@ -11,12 +11,7 @@ export default class UsernameCache {
         let currentDate = new Date();
         if (this.userCacheDate.get(userId) === undefined) return true; //If there is no entry, cache is automatically invalid
 
-        if (currentDate.getTime() - this.userCacheDate.get(userId).getTime() > 172800000) {
-            console.info("more than 2 days - invalid");
-            return true;
-        }
-
-        return false;
+        return currentDate.getTime() - this.userCacheDate.get(userId).getTime() > 172800000;
     }
 
     updateCache(userId: string, nickname: string){
