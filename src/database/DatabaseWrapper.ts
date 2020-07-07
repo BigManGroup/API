@@ -29,7 +29,6 @@ export default class DatabaseWrapper{
     }
 
     private async buildQuoteCache(){
-        console.info("Cache mismatch - Rebuilding Cache")
         let results = await (this.collection.find({$and: [{"accepted": true}, {"guild": "264032838712688640"}]})).toArray(); //Search where accepted is true
         this.databaseCache.lastSize = results.length;
 
