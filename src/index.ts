@@ -67,8 +67,8 @@ class Runner{
                 res.writeHead(204);
                 res.end();
                 return;
-            }else if(req.url === "/randomquote") await this.randomQuote(res);
-            else if(req.url === "/randominsult") await this.randomInsult(res);
+            }else if(req.url === "/randomquote/") await this.randomQuote(res);
+            else if(req.url === "/randominsult/") await this.randomInsult(res);
         });
 
         this.server.listen(3453);
